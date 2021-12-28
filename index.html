@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="(。-G-)chan">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="HCS北海道情報専門学校_学生向け体温報告サイト_ドメイン用">
+    <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
+    <meta property="og:title" content="学生向け体温報告サイト_ドメイン用">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url"
+        content="https://script.google.com/macros/s/AKfycbz5CudWXYfB6epHHDu0ElGv99wzVsjPAOlmXEkxLKncNghUBBQ/exec">
+    <meta property="og:site_name" content="HCS北海道情報専門学校_学生向け体温報告サイト_ドメイン用">
+    <meta property="og:image"
+        content="https://cdn.multidevice-disc.com/var/data/u/9a/5810ec90465/img/ogp.jpg?1557748131">
+    <meta property="og:description" content="HCS北海道情報専門学校_学生向け体温報告サイト_ドメイン用">
+    <title>けんおんちゃん - TempSystem</title>
+    <base target="_top">
+    <link rel="canonical"
+        href="https://script.google.com/macros/s/AKfycbz5CudWXYfB6epHHDu0ElGv99wzVsjPAOlmXEkxLKncNghUBBQ/exec">
+    <link rel="icon" type="image/x-icon"
+        href="https://cdn.multidevice-disc.com/var/data/u/9a/5810ec90465/img/favicon.ico?1418023890">
+    <link rel="shortcut icon" type="image/x-icon"
+        href="https://cdn.multidevice-disc.com/var/data/u/9a/5810ec90465/img/favicon.ico?1418023890">
+
+</head>
+<style>
+    /* サイズの設定簡略化のため */
+    * {
+        box-sizing: border-box;
+    }
+
+    /* HTML全体共通設定 */
+    html {
+        width: 100%;
+        height: auto;
+        font-size: 62.5%;
+        font-family: 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo', sans-serif;
+    }
+
+    /* レイアウト初期化 */
+    body {
+        width: 100%;
+        margin: 0
+    }
+
+    /* 文字(段落)の共通設定 */
+    p {
+        margin: 0.5em;
+        text-align: center;
+        color: #999999;
+        font-size: 80%;
+    }
+
+    /* ヘッダー内のアイテム① */
+    ul {
+        background-color: #16529B;
+        border-left: thin solid #F2F2F2;
+        width: 100%;
+        margin: -8px 0px;
+        padding: 0px;
+        color: white;
+    }
+
+    /* ヘッダー内のアイテム② */
+    li {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px
+    }
+
+    /* ラベルの共通設定 */
+    label {
+        display: flex;
+        align-items: center;
+        color: #666666;
+        font-size: 14px;
+        padding-left: 5px;
+    }
+
+    /* ヘッダー */
+    .header {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        border-bottom: thin solid #F2F2F2;
+        display: flex;
+    }
+
+    /* ヘッダー左 */
+    .header-logo {
+        width: 77%;
+        min-width: 50%;
+        padding: 8px;
+        display: flex;
+    }
+
+    /* ヘッダ右 */
+    .header-item {
+        width: 23%;
+        max-width: 50%;
+        display: flex;
+    }
+
+    /* HCSロゴ */
+    .logo {
+        height: auto;
+        max-height: 30px;
+    }
+
+
+    /* メインコンテンツ */
+    .main {
+        display: block;
+    }
+
+    /* けんおんちゃん */
+    .char {
+        margin: 0px 40%;
+        text-align: center;
+        width: 20%;
+        height: auto;
+    }
+
+    /* 幅が 767px 以下の場合 */
+    @media (max-width:767px) {
+        .char {
+            margin: 0px 10%;
+            text-align: center;
+            width: 80%;
+            height: auto;
+        }
+    }
+
+    /* 吹き出し */
+    .balloon1 {
+        position: relative;
+        margin: 10px;
+        margin-top: 5px;
+        padding: 10px;
+        background-color: #fff3ad;
+        font-size: 15px;
+    }
+
+    /* 吹き出し - 左右の中心 */
+    .balloon1::before {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 0;
+        height: 0;
+        left: 0;
+        right: 0;
+        bottom: -15px;
+        margin: 0 auto;
+        border-top: 15px solid #fff3ad;
+        border-right: 15px solid transparent;
+        border-left: 15px solid transparent;
+    }
+
+    /* フォーム部品の共通設定 */
+    .form-items {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: nowrap;
+    }
+
+    /* フォーム部品-セレクトボックスの共通設定 */
+    .form-items select {
+        height: auto;
+        padding: 3px 5px;
+        border: 1px solid #dfdfdf;
+        border-radius: 2px;
+        font-size: 16px;
+    }
+
+    #form-condition {
+        flex: 1 2;
+    }
+
+    #info {
+        margin-left: 5px;
+        height: 16px;
+        width: 16px;
+        display: block;
+    }
+
+    .tooltip {
+        position: relative;
+    }
+
+    #info-content {
+        /* はじめは隠しておく */
+        opacity: 0;
+        /* はじめは隠しておく */
+        visibility: hidden;
+        /* 絶対配置 */
+        position: absolute;
+        /* 親に対して中央配置 */
+        left: 100%;
+        /* 親に対して中央配置 */
+        transform: translateX(-15%);
+        /* 親要素下からの位置 */
+        bottom: 22px;
+        /* 余白 */
+        display: inline-block;
+        padding: 5px;
+        /* テキストを折り返さない */
+        white-space: nowrap;
+        /* フォントサイズ */
+        font-size: 10;
+        max-width: 95vw;
+        word-break : break-all;
+        /* 行間 */
+        line-height: 1.3;
+        /* 背景色 */
+        background: #333;
+        /* 文字色 */
+        color: #fff;
+        /* 角丸 */
+        border-radius: 3px;
+        /* アニメーション */
+        transition: 0.3s ease-in;
+    }
+
+    #info-content::before {
+        content: '';
+        position: absolute;
+        top: 46px;
+        right: 85%;
+        margin-left: -7px;
+        border: 7px solid transparent;
+        border-top: 7px solid #333;
+    }
+
+    .tooltip:hover #info-content {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    #form-temp {
+        flex: 2 1 60%;
+    }
+
+    #form-submit {
+        flex: 1 2 20%;
+    }
+
+    #temp {
+        width: 100%;
+    }
+
+    .button {
+        border-radius: 5%;
+        font-size: 11pt;
+        cursor: pointer;
+        height: 27px;
+        width: 85%;
+        margin-top: 1.4em;
+        margin-left: 5px;
+        background: #16529B;
+        color: #ffffff;
+        line-height: 1em;
+        border: 0px solid #16529B;
+    }
+
+    .button:hover {
+        box-shadow: none;
+        color: #FFFFFF;
+        background: #003D8D;
+    }
+
+    .overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(100, 100, 100, .8);
+        z-index: 9999;
+    }
+
+    #center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .spinner {
+        width: 70px;
+        height: 70px;
+        margin: 10px auto;
+        border: 4px #ddd solid;
+        border-top: 4px #2e93e6 solid;
+        border-radius: 50%;
+        animation: sp-anime 1.0s infinite linear;
+    }
+
+    @keyframes sp-anime {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* フッター */
+    .footer {
+        border-top: thin solid #F2F2F2;
+    }
+</style>
+<body>
+    <div class="contents">
+        <div class="header">
+            <div class="header-logo">
+                <a href="https://www.hcs.ac.jp/">
+                    <img class="logo"
+                        src="https://cdn.multidevice-disc.com/var/data/u/9a/5810ec90465/img/53/53b3dcc92178ca66ac15b91b0e95942c.png">
+                </a>
+            </div>
+            <div class="header-item">
+                <ul>
+                    <li>
+                        ドメイン用
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main">
+            <div class="box">
+                <div id="overlay">
+                    <div id="center">
+                        <div id="target"></div>
+                    </div>
+                </div>
+                <div class="balloon1">
+                    おはよう。<br>
+                    今朝の体温を入力してね。
+                </div>
+
+                <img class="char" src="tempSystemChar.png">
+            </div>
+
+            <form method="post"
+                action="">
+
+                <div class="form-items">
+                    <div id="form-condition">
+                        <label>体調
+                            <div class="tooltip">
+                                <img id="info" src="./info.png">
+                                <div id="info-content">体調が優れない(発熱、咳、倦怠感、その他)<br>場合は、不調を選択してください。</div>
+                            </div>
+                        </label>
+                        <select name="condition" id="condition" required="required">
+                            <option value="good" selected>良好</option>
+                            <option value="bad">不調</option>
+                        </select>
+                    </div>
+                    <div id="form-temp">
+                        <label>体温</label>
+                        <select name="temp" id="temp" required="required">
+                            <option value="35.0">~35.0</option>
+                            <option value="35.1">35.1</option>
+                            <option value="35.2">35.2</option>
+                            <option value="35.3">35.3</option>
+                            <option value="35.4">35.4</option>
+                            <option value="35.5">35.5</option>
+                            <option value="35.6">35.6</option>
+                            <option value="35.7">35.7</option>
+                            <option value="35.8">35.8</option>
+                            <option value="35.9">35.9</option>
+                            <option value="36.0">36.0</option>
+                            <option value="36.1">36.1</option>
+                            <option value="36.2">36.2</option>
+                            <option value="36.3">36.3</option>
+                            <option value="36.4">36.4</option>
+                            <option value="36.5" selected>36.5</option>
+                            <option value="36.6">36.6</option>
+                            <option value="36.7">36.7</option>
+                            <option value="36.8">36.8</option>
+                            <option value="36.9">36.9</option>
+                            <option value="37.0">37.0</option>
+                            <option value="37.1">37.1</option>
+                            <option value="37.2">37.2</option>
+                            <option value="37.3">37.3</option>
+                            <option value="37.4">37.4</option>
+                            <option value="37.5">37.5</option>
+                            <option value="37.6">37.6</option>
+                            <option value="37.7">37.7</option>
+                            <option value="37.8">37.8</option>
+                            <option value="37.9">37.9</option>
+                            <option value="38.0">38.0</option>
+                            <option value="38.1">38.1</option>
+                            <option value="38.2">38.2</option>
+                            <option value="38.3">38.3</option>
+                            <option value="38.4">38.4</option>
+                            <option value="38.5">38.5</option>
+                            <option value="38.6">38.6</option>
+                            <option value="38.7">38.7</option>
+                            <option value="38.8">38.8</option>
+                            <option value="38.9">38.9</option>
+                            <option value="38.0">39.0</option>
+                            <option value="39.1">39.1</option>
+                            <option value="39.2">39.2</option>
+                            <option value="39.3">39.3</option>
+                            <option value="39.4">39.4</option>
+                            <option value="39.5">39.5</option>
+                            <option value="39.6">39.6</option>
+                            <option value="39.7">39.7</option>
+                            <option value="39.8">39.8</option>
+                            <option value="39.9">39.9</option>
+                            <option value="40.0">40.0~</option>
+                        </select>
+                    </div>
+                    <div id="form-submit">
+                        <input type="submit" value="登録" id="submit" class="button" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="footer">
+            <p>Copyright © 2022 北海道情報専門学校. All right reserved.</p>
+        </div>
+    </div>
+</body>
+<script>
+    window.onload = function () {
+        var link = document.createElement("link");
+        link.setAttribute('rel', 'apple-touch-icon-precomposed');
+        link.setAttribute('href', 'https://raw.githubusercontent.com/shun-shun/tempSystem/main/webclip.png');
+        document.head.appendChild(link);
+
+        var submit = document.getElementById('submit');
+        submit.addEventListener('click', function () {
+            var target = document.getElementById('overlay');
+            target.classList.add('overlay');
+            var target = document.getElementById('target');
+            target.classList.add('spinner');
+        })
+    }
+</script>
+
+</html>
