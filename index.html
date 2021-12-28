@@ -560,10 +560,12 @@
         font-size: 16px;
     }
 
+    /* 体調フォーム */
     #form-condition {
         flex: 1 2;
     }
 
+    /* 体調についての画像イメージ */
     #info {
         margin-left: 5px;
         height: 16px;
@@ -571,44 +573,33 @@
         display: block;
     }
 
+    /* ツールチップの親 */
     .tooltip {
         position: relative;
     }
 
+    /* ツールチップのレイアウト */
     #info-content {
-        /* はじめは隠しておく */
         opacity: 0;
-        /* はじめは隠しておく */
         visibility: hidden;
-        /* 絶対配置 */
         position: absolute;
-        /* 親に対して中央配置 */
         left: 100%;
-        /* 親に対して中央配置 */
         transform: translateX(-15%);
-        /* 親要素下からの位置 */
         bottom: 22px;
-        /* 余白 */
         display: inline-block;
         padding: 5px;
-        /* テキストを折り返さない */
         white-space: nowrap;
-        /* フォントサイズ */
         font-size: 10;
         max-width: 95vw;
         word-break: break-all;
-        /* 行間 */
         line-height: 1.3;
-        /* 背景色 */
         background: #333;
-        /* 文字色 */
         color: #fff;
-        /* 角丸 */
         border-radius: 3px;
-        /* アニメーション */
         transition: 0.3s ease-in;
     }
 
+    /* ツールチップ(吹き出し)口のレイアウト */
     #info-content::before {
         content: '';
         position: absolute;
@@ -619,23 +610,28 @@
         border-top: 7px solid #333;
     }
 
+    /* ツールチップ起動設定 */
     .tooltip:hover #info-content {
         opacity: 1;
         visibility: visible;
     }
 
+    /* 体温フォーム */
     #form-temp {
         flex: 2 1 60%;
     }
 
+    /* 登録ボタンフォーム */
     #form-submit {
         flex: 1 2 20%;
     }
 
+    /* セレクトボックス(体温)の設定 */
     #temp {
         width: 100%;
     }
 
+    /* submit(登録ボタン)の設定 */
     .button {
         border-radius: 2px;
         font-size: 11pt;
@@ -649,12 +645,14 @@
         border: 0px solid #16529B;
     }
 
+    /* submit(登録ボタン)のイベント設定 */
     .button:hover {
         box-shadow: none;
         color: #FFFFFF;
         background: #003D8D;
     }
 
+    /* 登録ボタン押下時のぐるぐるの設定(背景) */
     .overlay {
         position: absolute;
         left: 0;
@@ -665,6 +663,7 @@
         z-index: 9999;
     }
 
+    /* 登録ボタン押下時のぐるぐるの設定(レイアウト) */
     #center {
         position: absolute;
         top: 50%;
@@ -672,6 +671,7 @@
         transform: translate(-50%, -50%);
     }
 
+    /* 登録ボタン押下時のぐるぐるの設定(ぐるぐる) */
     .spinner {
         width: 70px;
         height: 70px;
@@ -682,6 +682,7 @@
         animation: sp-anime 1.0s infinite linear;
     }
 
+    /* ぐるぐるのアニメーション */
     @keyframes sp-anime {
         100% {
             transform: rotate(360deg);
